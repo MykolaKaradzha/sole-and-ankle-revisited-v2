@@ -1,10 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { COLORS, WEIGHTS } from '../../constants';
-import Logo from '../Logo';
-import SuperHeader from '../SuperHeader';
-import MobileMenu from '../MobileMenu';
+import { COLORS, WEIGHTS } from "../../constants";
+import Logo from "../Logo";
+import SuperHeader from "../SuperHeader";
+import MobileMenu from "../MobileMenu";
+import UnstyledButton from "../UnstyledButton";
+import Icon from "../Icon";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -30,6 +32,20 @@ const Header = () => {
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
         <Side />
+
+        <MobileIconsWrapper>
+          <UnstyledButton>
+            <Icon id="shopping-bag" strokeWidth={1} />
+          </UnstyledButton>
+
+          <UnstyledButton>
+            <Icon id="search" strokeWidth={1} />
+          </UnstyledButton>
+
+          <UnstyledButton onClick={() => setShowMobileMenu(true)}>
+            <Icon id="menu" strokeWidth={1} />
+          </UnstyledButton>
+        </MobileIconsWrapper>
       </MainHeader>
 
       <MobileMenu
@@ -45,13 +61,23 @@ const MainHeader = styled.div`
   align-items: baseline;
   padding: 18px 32px;
   height: 72px;
+  border-top: 4px solid ${({ theme }) => theme.colors.gray[900]};
   border-bottom: 1px solid ${COLORS.gray[300]};
+
+  @media ${({ theme }) => theme.devices.phoneAndDown} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `;
 
 const Nav = styled.nav`
   display: flex;
   gap: 48px;
   margin: 0px 48px;
+
+  @media ${({ theme }) => theme.devices.tabletAndDown} {
+    display: none;
+  }
 `;
 
 const Side = styled.div`
@@ -67,6 +93,20 @@ const NavLink = styled.a`
 
   &:first-of-type {
     color: ${COLORS.secondary};
+  }
+`;
+
+const MobileIconsWrapper = styled.div`
+  display: none;
+
+  @media ${({ theme }) => theme.devices.tabletAndDown} {
+    display: flex;
+    gap: 32px;
+    margin-left: 32px;
+  }
+
+  @media ${({ theme }) => theme.devices.phoneAndDown} {
+    gap: 16px;
   }
 `;
 
