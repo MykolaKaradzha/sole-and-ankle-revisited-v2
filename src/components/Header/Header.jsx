@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 import { COLORS, WEIGHTS } from "../../constants";
 import Logo from "../Logo";
 import SuperHeader from "../SuperHeader";
@@ -9,7 +8,7 @@ import UnstyledButton from "../UnstyledButton";
 import Icon from "../Icon";
 
 const Header = () => {
-  const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+  const [showMobileMenu, setShowMobileMenu] = React.useState(true);
 
   // For our mobile hamburger menu, we'll want to use a button
   // with an onClick handler, something like this:
