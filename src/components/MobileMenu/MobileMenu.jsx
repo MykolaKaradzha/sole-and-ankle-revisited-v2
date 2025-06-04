@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
 import UnstyledButton from "../UnstyledButton";
@@ -45,7 +44,7 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
 export default MobileMenu;
 
 const Overlay = styled(Dialog.Overlay)`
-  background-color: ${({ theme }) => theme.colors.gray[700]};
+  background-color: var(--color-gray-700);
   position: fixed;
   opacity: 0.8;
   inset: 0;
@@ -60,7 +59,7 @@ const Content = styled(Dialog.Content)`
   width: 300px;
   height: 100%;
   padding: 32px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: var(--color-white);
 `;
 
 const Nav = styled.nav`
@@ -90,20 +89,20 @@ const Footer = styled.footer`
 const NavLink = styled.a`
   text-decoration: none;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.gray[900]};
-  font-weight: 600;
+  color: var(--color-gray-900);
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-size: ${18 / 16}rem;
   line-height: 1;
 
   &:first-child {
-    color: ${({ theme }) => theme.colors.secondary};
+    color: var(--color-secondary);
   }
 `;
 
 const FooterLink = styled.a`
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.gray[700]};
-  font-weight: 500;
+  color: var(--color-gray-700);
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
   font-size: ${14 / 16}rem;
   line-height: 1;
 `;

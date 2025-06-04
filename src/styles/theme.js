@@ -1,14 +1,14 @@
 const BREAKPOINTS = {
-  phone: "37.5rem",
-  tablet: "59.375rem",
-  laptop: "81.25rem",
+  phone: 600,
+  tablet: 950,
+  laptop: 1300,
 };
 
 export const theme = {
   devices: {
-    laptopAndDown: `(max-width: ${BREAKPOINTS.laptop})`,
-    tabletAndDown: `(max-width: ${BREAKPOINTS.tablet})`,
-    phoneAndDown: `(max-width: ${BREAKPOINTS.phone})`,
+    laptopAndDown: `(max-width: ${BREAKPOINTS.laptop / 16}rem)`,
+    tabletAndDown: `(max-width: ${BREAKPOINTS.tablet / 16}rem)`,
+    phoneAndDown: `(max-width: ${BREAKPOINTS.phone / 16}rem)`,
   },
   colors: {
     white: "hsl(0deg 0% 100%)",

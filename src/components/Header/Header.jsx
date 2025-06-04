@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { COLORS, WEIGHTS } from "../../constants";
+import { WEIGHTS } from "../../constants";
 import Logo from "../Logo";
 import SuperHeader from "../SuperHeader";
 import MobileMenu from "../MobileMenu";
 import UnstyledButton from "../UnstyledButton";
 import Icon from "../Icon";
+import VisuallyHidden from "../VisuallyHidden";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(true);
@@ -19,9 +20,9 @@ const Header = () => {
     <header>
       <SuperHeader />
       <MainHeader>
-        <Side>
+        <LogoWrapper>
           <Logo />
-        </Side>
+        </LogoWrapper>
         <Nav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
@@ -30,19 +31,22 @@ const Header = () => {
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
-        <Side />
+        <Filler />
 
         <MobileIconsWrapper>
           <UnstyledButton>
             <Icon id="shopping-bag" strokeWidth={1} />
+            <VisuallyHidden>Open cart</VisuallyHidden>
           </UnstyledButton>
 
           <UnstyledButton>
             <Icon id="search" strokeWidth={1} />
+            <VisuallyHidden>Search</VisuallyHidden>
           </UnstyledButton>
 
           <UnstyledButton onClick={() => setShowMobileMenu(true)}>
             <Icon id="menu" strokeWidth={1} />
+            <VisuallyHidden>Open Menu</VisuallyHidden>
           </UnstyledButton>
         </MobileIconsWrapper>
       </MainHeader>
@@ -60,8 +64,12 @@ const MainHeader = styled.div`
   align-items: baseline;
   padding: 18px 32px;
   height: 72px;
-  border-top: 4px solid ${({ theme }) => theme.colors.gray[900]};
-  border-bottom: 1px solid ${COLORS.gray[300]};
+  border-bottom: 1px solid var(--color-gray-300);
+
+  @media ${({ theme }) => theme.devices.tabletAndDown} {
+    justify-content: space-between;
+    border-top: 4px solid var(--color-gray-900);
+  }
 
   @media ${({ theme }) => theme.devices.phoneAndDown} {
     padding-left: 16px;
@@ -71,27 +79,40 @@ const MainHeader = styled.div`
 
 const Nav = styled.nav`
   display: flex;
-  gap: 48px;
+  gap: clamp(1rem, 2vw + 1rem, 3rem);
   margin: 0px 48px;
+  overflow: auto;
 
   @media ${({ theme }) => theme.devices.tabletAndDown} {
     display: none;
   }
 `;
 
-const Side = styled.div`
+const Filler = styled.div`
   flex: 1;
+
+  @media ${({ theme }) => theme.devices.tabletAndDown} {
+    display: none;
+  }
+`;
+
+const LogoWrapper = styled.div`
+  flex: 1;
+
+  @media ${({ theme }) => theme.devices.tabletAndDown} {
+    flex: revert;
+  }
 `;
 
 const NavLink = styled.a`
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
-  color: ${COLORS.gray[900]};
+  color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
 
   &:first-of-type {
-    color: ${COLORS.secondary};
+    color: var(--color-secondary);
   }
 `;
 
